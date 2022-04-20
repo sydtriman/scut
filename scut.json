@@ -1,6 +1,34 @@
 {
-    "Version": "1.1",
-    "System": "10",
-    "Release Date": "19/04/2022",
-    "ChangeLog": "initial"
+  "rockdale": {
+    "items": [
+      {
+        "product": "name",
+        "ailse": "1"
+      },
+      {
+        "product": "name",
+        "ailse": "1"
+      },
+      {
+        "product": "name",
+        "ailse": "1"
+      }
+    ]
+  },
+  "greenacre": {
+    "items": [
+      {
+        "product": "name",
+        "ailse": "1"
+      },
+      {
+        "product": "name",
+        "ailse": "1"
+      },
+      {
+       "product": "name",
+        "ailse": "1"
+      }
+    ]
+  }
 }
