@@ -1,34 +1,40 @@
 {
-  "rockdale": {
-    "items": [
-      {
-        "product": "name",
-        "ailse": "1"
-      },
-      {
-        "product": "name",
-        "ailse": "1"
-      },
-      {
-        "product": "name",
-        "ailse": "1"
-      }
+    "stores": [
+        {
+            "storename": "Rockdale",
+            "storeaddress": "org.cofax.cds.CDSServlet",
+            "items": [
+                {
+                    "product": "name",
+                    "ailse": "1"
+                },
+                {
+                    "product": "name",
+                    "ailse": "1"
+                },
+                {
+                    "product": "name",
+                    "ailse": "1"
+                }
+            ]
+        },
+        {
+            "storename": "Greenacre",
+            "storeaddress": "org.cofax.cds.CDSServlet",
+            "items": [
+                {
+                    "product": "name",
+                    "ailse": "1"
+                },
+                {
+                    "product": "name",
+                    "ailse": "1"
+                },
+                {
+                    "product": "name",
+                    "ailse": "1"
+                }
+            ]
+        }
     ]
-  },
-  "greenacre": {
-    "items": [
-      {
-        "product": "name",
-        "ailse": "1"
-      },
-      {
-        "product": "name",
-        "ailse": "1"
-      },
-      {
-       "product": "name",
-        "ailse": "1"
-      }
-    ]
-  }
 }
