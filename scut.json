@@ -1,15 +1,6 @@
 {
     "stores": [
         {
-            "storename": "Michael",
-            "items": [
-                {
-                    "product": "Testing product",
-                    "aisle": "999"
-                }
-            ]
-        },
-        {
             "storename": "Rockdale",
             "storeaddress": "org.cofax.cds.CDSServlet",
             "items": [
