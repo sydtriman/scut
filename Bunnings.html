@@ -1,0 +1,239 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script>
+        let url = 'https://raw.githubusercontent.com/sydtriman/scut/main/scut.json';
+        let json_source;
+        let selected_store = "";
+        document.addEventListener("DOMContentLoaded", getProducts);
+
+        async function getProducts() {
+            let myObject = await fetch(url);
+            json_source = await myObject.json();
+            createSelect()
+            createProductTable(selected_store)
+        }
+
+        function createSelect() {
+            let textSelect = "";
+            for (let n in json_source.stores) {
+                textSelect += "<option value=\"" + json_source.stores[n].storename + "\">" + json_source.stores[n].storename + "</option>"
+            }
+            document.getElementById("storeSelect").innerHTML = textSelect;
+            selected_store = json_source.stores[0].storename
+            document.getElementById("storeHeader").innerHTML = "Bunnings " + selected_store
+        }
+
+        function createProductTable(selected_store) {
+
+            let text = "<table id=\"myTable\" class=\"w3-table w3-card w3-xlarge w3-bordered w3-striped\">"
+            text += "<tr id=\"header\" class=\"w3-bunnings-green\"><th>Products</th><th class=\"w3-right-align\">Aisle</th></tr>"
+
+            for (let y in json_source.stores) {
+                if (json_source.stores[y].storename == selected_store) {
+                    for (let x in json_source.stores[y].items) {
+                        text += "<tr><td class=\"w3-jumbo\">" + json_source.stores[y].items[x].product + "</td><td class=\"w3-right-align w3-jumbo\">" + json_source.stores[y].items[x].aisle + "</td></tr>";
+                    }
+                }
+            }
+
+            text += "</table>"
+            document.getElementById("productTable").innerHTML = text;
+            document.getElementById("storeHeader").innerHTML = "Bunnings " + selected_store
+        }
+
+    </script>
+    <style>
+        .w3-bunnings {
+            color: #fff !important;
+            background-color: #0d5257 !important
+        }
+
+        .w3-bunnings-red {
+            color: #fff !important;
+            background-color: rgb(188, 35, 24) !important
+        }
+
+        .w3-bunnings-action {
+            color: #fff !important;
+            background-color: rgb(13, 82, 87) !important
+        }
+
+        .w3-bunnings-green {
+            color: rgb(13, 82, 87) !important
+        }
+
+        .w3-bunnings-text-red {
+            color: rgb(188, 35, 24);
+        }
+
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: Helvetica, sans-serif
+        }
+
+        #topBtn {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Fixed/sticky position */
+            bottom: 20px;
+            /* Place the button at the bottom of the page */
+            right: 30px;
+            /* Place the button 30px from the right */
+            z-index: 99;
+            /* Make sure it does not overlap */
+
+        }
+
+        select {
+            display: block;
+
+            font-size: 16px;
+            color: #444;
+            line-height: 1.3;
+            padding: .6em 1.4em .5em .8em;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            margin: 0;
+            border: 1px solid #aaa;
+            box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
+            border-radius: .5em;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: white;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+                linear-gradient(to bottom, white 50%, white 100%);
+            background-repeat: no-repeat, repeat;
+            background-position: right .7em top 50%, 0 0;
+            background-size: .65em auto, 100%;
+        }
+
+        select::-ms-expand {
+            display: none;
+        }
+
+        select:hover {
+            border-color: #0d5257;
+        }
+
+        select:focus {
+            border-color: #aaa;
+            /* box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7); */
+            /* box-shadow: 0 0 0 3px -moz-mac-focusring; */
+            color: #222;
+            outline: none;
+        }
+
+        select option {
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="w3-button w3-bunnings-red w3-round w3-xxxlarge w3-padding-16 w3-hover-amber" onclick="topFunction()"
+        id="topBtn" title="Go to top">Top &#x21E7;</button>
+    <div class="w3-container w3-margin">
+        <!-- HEADER WITH STORE SELECTION DROP DOWN -->
+        <div class="w3-row ">
+            <div class="w3-col l8">
+                <h1 id="storeHeader" style="font-weight: 700" class="w3-xxxlarge w3-bunnings-green ">Bunnings Rockdale
+                </h1>
+            </div>
+            <div class="w3-col l4 w3-bunnings w3-padding w3-border w3-round">
+                <label class="w3-text-white  w3-xxlarge">
+                    Select store:<div class="w3-large w3-right">v0.1.10</div></label>
+                <select class="w3-xxlarge w3-border w3-round" id="storeSelect"
+                    onchange="triggerRebuild(this.value)"></select>
+            </div>
+        </div>
+        <!-- END -->
+
+        <!-- SEARCH BAR -->
+
+        <div class="w3-row w3-padding w3-section w3-bunnings w3-border w3-border-white w3-round">
+            <div class="w3-col l10 s9">
+                <input class="w3-input w3-xxlarge w3-border w3-round " type="text" id="myInput"
+                    onkeyup="filterProducts()" placeholder="Search ...">
+            </div>
+            <div class="w3-col l2 s3 w3-right-align">
+                <label class="w3-text-white ">
+                    <button class="w3-button w3-xxlarge w3-bunnings w3-border w3-border-white w3-hover-white"
+                        id="clearbtn" onclick="clearSearch()">Clear</button>
+            </div>
+        </div>
+        <!-- END -->
+
+        <!-- TABLE -->
+        <div class="w3-section" id="productTable"></div>
+        <!-- END -->
+    </div>
+
+    <script>
+        function triggerRebuild(selected_store) {
+            clearSearch();
+            createProductTable(selected_store)
+
+        }
+        function filterProducts() {
+            // Declare variables 
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                tdAisle = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    txtValueAisle = tdAisle.textContent || tdAisle.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValueAisle.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function clearSearch() {
+            document.getElementById('myInput').value = ''
+            filterProducts()
+        }
+        //Get the button:
+        mybutton = document.getElementById("topBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+    </script>
+</body>
+
+</html>
