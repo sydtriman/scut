@@ -9,6 +9,7 @@
         let selected_store = "";
         document.addEventListener("DOMContentLoaded", getProducts);
 
+        
         async function getProducts() {
             let myObject = await fetch(url);
             json_source = await myObject.json();
